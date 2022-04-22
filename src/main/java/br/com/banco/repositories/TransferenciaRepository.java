@@ -1,4 +1,4 @@
-package br.com.banco.repository;
+package br.com.banco.repositories;
 
 import br.com.banco.domain.Transferencia;
 import org.springframework.data.domain.Page;
@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
-import java.util.List;
 
 @Repository
 public interface TransferenciaRepository extends JpaRepository<Transferencia,Integer> {

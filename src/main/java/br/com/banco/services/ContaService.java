@@ -1,7 +1,9 @@
 package br.com.banco.services;
 
 import br.com.banco.domain.Conta;
-import br.com.banco.repository.ContaRepository;
+
+import br.com.banco.dtos.ContaDTO;
+import br.com.banco.repositories.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

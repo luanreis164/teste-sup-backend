@@ -1,7 +1,7 @@
 package br.com.banco.services;
 
 import br.com.banco.domain.Transferencia;
-import br.com.banco.repository.TransferenciaRepository;
+import br.com.banco.repositories.TransferenciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
