@@ -23,7 +23,7 @@ public class Conta implements Serializable{
 
     private String nomeResponsavel;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "conta")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "conta",cascade = CascadeType.ALL)
     private List<Transferencia> transferencias = new ArrayList<>();
 
 }
