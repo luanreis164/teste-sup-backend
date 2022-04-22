@@ -20,7 +20,6 @@ public class TransferenciaDTO implements Serializable {
     private Double valor;
     private String tipo;
     private String nomeOperadorTransacao;
-
     private Integer contaId;
 
 
