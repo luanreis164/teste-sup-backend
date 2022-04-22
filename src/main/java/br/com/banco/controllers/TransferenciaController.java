@@ -61,6 +61,27 @@ public class TransferenciaController {
         return ResponseEntity.created(uri).build();
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Void> update(@RequestBody TransferenciaDTO objDto, @PathVariable Integer id){
+        Transferencia obj = transferenciaService.fromDTO(objDto);
+        obj.setId(id);
+        transferenciaService.update(obj);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Void> updatePatch(@RequestBody TransferenciaDTO objDto, @PathVariable Integer id){
+        Transferencia obj = transferenciaService.fromDTO(objDto);
+        obj.setId(id);
+        obj = transferenciaService.update(obj);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id){
+        transferenciaService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
 

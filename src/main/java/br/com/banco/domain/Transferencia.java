@@ -24,8 +24,8 @@ public class Transferencia implements Serializable{
     private Integer id;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    @Temporal(TemporalType.DATE)
-    private Date dataTransferencia = new Date();
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataTransferencia;
 
     private Double valor;
     private String tipo;

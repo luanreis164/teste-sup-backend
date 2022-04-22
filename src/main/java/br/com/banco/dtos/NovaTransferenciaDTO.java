@@ -17,7 +17,7 @@ import java.util.Date;
 public class NovaTransferenciaDTO implements Serializable{
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private Date dataTransferencia = new Date();
+    private Date dataTransferencia;
 
     @NotNull
     private Double valor;
