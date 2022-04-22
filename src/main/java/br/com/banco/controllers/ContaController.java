@@ -21,7 +21,7 @@ public class ContaController {
 
 
     @GetMapping
-    public ResponseEntity<List<ContaDTO>> buscarContas(){
+    public ResponseEntity<List<ContaDTO>> findAll(){
         List<Conta> lista = contaService.findAll();
         List<ContaDTO> listaDto = lista.stream().map(ContaDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok().body(listaDto);

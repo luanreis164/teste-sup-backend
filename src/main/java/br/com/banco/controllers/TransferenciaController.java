@@ -1,14 +1,17 @@
 package br.com.banco.controllers;
 
 import br.com.banco.domain.Transferencia;
+import br.com.banco.dtos.NovaTransferenciaDTO;
 import br.com.banco.dtos.TransferenciaDTO;
-import br.com.banco.repositories.TransferenciaRepository;
 import br.com.banco.services.TransferenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
+import java.net.URI;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,14 +23,17 @@ public class TransferenciaController {
     @Autowired
     private TransferenciaService transferenciaService;
 
-    @Autowired
-    private TransferenciaRepository repo;
-
     @GetMapping
     public ResponseEntity<List<TransferenciaDTO>> findAll(){
-        List<Transferencia> lista = repo.findAll();
+        List<Transferencia> lista = transferenciaService.findAll();
         List<TransferenciaDTO> listaDto = lista.stream().map(TransferenciaDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok().body(listaDto);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Transferencia> find(@PathVariable Integer id){
+        Transferencia obj = transferenciaService.findOneById(id);
+        return  ResponseEntity.ok().body(obj);
     }
 
     @GetMapping(value = "/buscar")
@@ -44,5 +50,17 @@ public class TransferenciaController {
         Page<TransferenciaDTO> listaDTO = lista.map(TransferenciaDTO::new);
         return ResponseEntity.ok().body(listaDTO);
     }
+
+    @PostMapping
+    public ResponseEntity<Void> insert(@Valid @RequestBody NovaTransferenciaDTO objDto){
+        Transferencia obj = transferenciaService.fromDTO(objDto);
+        obj = transferenciaService.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).build();
+    }
+
+
 }
 

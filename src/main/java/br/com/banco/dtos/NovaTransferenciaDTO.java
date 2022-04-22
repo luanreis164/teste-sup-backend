@@ -1,5 +1,6 @@
 package br.com.banco.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +16,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class NovaTransferenciaDTO implements Serializable{
 
-
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Date dataTransferencia = new Date();
 
     @NotNull
@@ -25,8 +26,6 @@ public class NovaTransferenciaDTO implements Serializable{
     @Size(min = 3,max = 80,message = "O tamanho deve ter entre 3 e 30 caracteres!")
     private String tipo;
 
-    @NotEmpty(message = "Preenchimento obrigatório!")
-    @Size(min = 3,max = 80,message = "O nome deve ter entre 3 e 80! caracteres")
     private String nomeOperadorTransacao;
 
     @NotNull

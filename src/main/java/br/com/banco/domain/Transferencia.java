@@ -36,4 +36,6 @@ public class Transferencia implements Serializable{
     @JoinColumn(name = "conta_id")
     private Conta conta;
 
+
+
 }
