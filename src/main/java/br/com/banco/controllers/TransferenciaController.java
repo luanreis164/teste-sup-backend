@@ -23,12 +23,6 @@ public class TransferenciaController {
     @Autowired
     private TransferenciaService transferenciaService;
 
-    @GetMapping
-    public ResponseEntity<List<TransferenciaDTO>> findAll(){
-        List<Transferencia> lista = transferenciaService.findAll();
-        List<TransferenciaDTO> listaDto = lista.stream().map(TransferenciaDTO::new).collect(Collectors.toList());
-        return ResponseEntity.ok().body(listaDto);
-    }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Transferencia> find(@PathVariable Integer id){
@@ -36,7 +30,7 @@ public class TransferenciaController {
         return  ResponseEntity.ok().body(obj);
     }
 
-    @GetMapping(value = "/busca")
+    @GetMapping
     public ResponseEntity<Page<TransferenciaDTO>> findByPeriodPage(
             @RequestParam(value = "inicio",defaultValue = "01/01/2010") Date inicio,
             @RequestParam(value = "termino",defaultValue = "01/01/2500") Date termino,
