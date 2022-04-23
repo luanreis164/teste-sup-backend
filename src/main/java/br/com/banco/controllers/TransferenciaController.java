@@ -36,11 +36,11 @@ public class TransferenciaController {
         return  ResponseEntity.ok().body(obj);
     }
 
-    @GetMapping(value = "/buscar")
+    @GetMapping(value = "/busca")
     public ResponseEntity<Page<TransferenciaDTO>> findByPeriodPage(
             @RequestParam(value = "inicio",defaultValue = "01/01/2010") Date inicio,
             @RequestParam(value = "termino",defaultValue = "01/01/2500") Date termino,
-            @RequestParam(value = "nomeOperador",required = false) String nomeOperador,
+            @RequestParam(value = "nomeOperador",defaultValue = "") String nomeOperador,
             @RequestParam(value = "page",defaultValue = "0") Integer page,
             @RequestParam(value = "linesPerPage",defaultValue = "24") Integer linesPerPage,
             @RequestParam(value = "orderBy",defaultValue = "dataTransferencia") String orderBy,
