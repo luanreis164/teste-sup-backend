@@ -54,7 +54,7 @@ public class TransferenciaService {
         if(nomeOperador.isBlank()){
             return repo.buscaCompleta(inicio,termino,nomeOperador,pageRequest);
         }
-        return repo.buscaEntreDatasENome(inicio,termino,nomeOperador,pageRequest);
+        return repo.buscaEntreDatas(inicio,termino,nomeOperador,pageRequest);
     }
 
     public Transferencia fromDTO(TransferenciaDTO objDto){

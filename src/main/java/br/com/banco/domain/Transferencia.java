@@ -2,7 +2,6 @@ package br.com.banco.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,8 +30,7 @@ public class Transferencia implements Serializable{
     private String tipo;
     private String nomeOperadorTransacao;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "conta_id")
     private Conta conta;
 

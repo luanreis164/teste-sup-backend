@@ -1,5 +1,6 @@
 package br.com.banco.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +24,8 @@ public class Conta implements Serializable{
 
     private String nomeResponsavel;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "conta",cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany
     private List<Transferencia> transferencias = new ArrayList<>();
 
 }

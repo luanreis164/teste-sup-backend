@@ -14,7 +14,7 @@ public interface TransferenciaRepository extends JpaRepository<Transferencia,Int
 
     @Query("select distinct t from Transferencia t " +
            "where t.dataTransferencia between ?1 and ?2 and upper(t.nomeOperadorTransacao) like upper(concat('%', ?3, '%'))")
-    Page<Transferencia> buscaEntreDatasENome(Date inicio, Date termino, String nomeOperadorTransacao, Pageable pageable);
+    Page<Transferencia> buscaEntreDatas(Date inicio, Date termino, String nomeOperadorTransacao, Pageable pageable);
 
     @Query("select distinct t from Transferencia t " +
             "where t.dataTransferencia between ?1 and ?2 and upper(t.nomeOperadorTransacao) like upper(concat('%', ?3, '%')) or t.nomeOperadorTransacao is null")
