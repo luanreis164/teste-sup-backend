@@ -14,6 +14,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -49,12 +51,12 @@ public class TransferenciaService {
         updateData(newObj,obj);
         return repo.save(newObj);
     }
-    public Page<Transferencia> findByPeriod(Date inicio, Date termino,String nomeOperador,Integer page,Integer linesPerPage,String orderBy,String direction){
+    public Page<Transferencia> findByPeriod(String inicio, String termino,String nomeOperador,Integer page,Integer linesPerPage,String orderBy,String direction){
         PageRequest pageRequest = PageRequest.of(page,linesPerPage, Sort.Direction.valueOf(direction),orderBy);
         if(nomeOperador.isBlank()){
-            return repo.buscaCompleta(inicio,termino,nomeOperador,pageRequest);
+            return repo.buscaCompleta(converteStringParaDate(inicio),converteStringParaDate(termino),nomeOperador,pageRequest);
         }
-        return repo.buscaEntreDatas(inicio,termino,nomeOperador,pageRequest);
+        return repo.buscaEntreDatas(converteStringParaDate(inicio),converteStringParaDate(termino),nomeOperador,pageRequest);
     }
 
     public Transferencia fromDTO(TransferenciaDTO objDto){
@@ -77,6 +79,15 @@ public class TransferenciaService {
     public void delete(Integer id){
         findOneById(id);
         repo.deleteById(id);
+    }
+
+    public Date converteStringParaDate(String data) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            return sdf.parse(data);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

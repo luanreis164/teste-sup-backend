@@ -32,8 +32,8 @@ public class TransferenciaController {
 
     @GetMapping
     public ResponseEntity<Page<TransferenciaDTO>> findByPeriodPage(
-            @RequestParam(value = "inicio",defaultValue = "01/01/2010") Date inicio,
-            @RequestParam(value = "termino",defaultValue = "01/01/2500") Date termino,
+            @RequestParam(value = "inicio",defaultValue = "01/01/2010") String inicio,
+            @RequestParam(value = "termino",defaultValue = "01/01/2500") String termino,
             @RequestParam(value = "nomeOperador",defaultValue = "") String nomeOperador,
             @RequestParam(value = "page",defaultValue = "0") Integer page,
             @RequestParam(value = "linesPerPage",defaultValue = "24") Integer linesPerPage,
